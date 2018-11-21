@@ -1,0 +1,57 @@
+extends ../layout
+
+block content
+  .container
+    h1.main-title= question.title
+  
+    .question.show
+      .row
+       label 주최사  
+       .content= question.sponsor
+      .row
+       label 응시대상    
+       .content= question.applicant
+      .row
+       label 접수기간  
+       .content= question.period
+      .row
+       label 공모요강 
+       .content= question.content 
+      .row
+       label 담당자   
+       .content= question.charger  
+      .row 
+       label 담당자 번호     
+       .content= question.number
+
+      if question.img
+        img.img-fluid(src= question.img)
+      include _question
+
+      .buttons
+        if currentUser
+          button.btn.btn-primary.question-like-btn(data-id=question.id) 
+            span.for-loading #[i.fa.fa-spin.fa-refresh] Loading
+            span #[i.fa.fa-thumbs-up] Like
+          if question.author && question.author.id == currentUser.id
+            | 
+            a.btn.btn-outline-secondary(href=`/questions/${question.id}/edit`) Edit
+            | 
+            a.btn.btn-outline-danger.need-confirm-btn(href=`/questions/${question.id}?_method=delete`) Delete
+      
+    if question.numAnswers > 0
+      hr
+      h3 #{question.numAnswers} Answer(s)
+      .answers.show
+        each answer in answers
+          include _answer
+
+    if currentUser
+      form(action=`/questions/${question.id}/answers`, method='POST')
+        .form-group
+          label(for='answer') Your Answer
+          textarea.form-control(name="content", rows="5")
+        button.btn.btn-primary(type="submit") Post Your Answer
+
+
+  script(src='/javascripts/question_client.js')

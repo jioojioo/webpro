@@ -1,0 +1,61 @@
+.form-group
+  label(for="title") Title
+  input.form-control(type="text", name="title", placeholder="공모전 이름을 입력하세요", value=question.title)
+.form-group
+  label(for="sponsor") 주최사
+  textarea.form-control(name="sponsor", rows="1")= question.sponsor
+.form-group
+  label(for="applicant") 응시대상
+  textarea.form-control(name="applicant", rows="1")= question.applicant
+.form-group
+  label(for="period") 접수기간
+  textarea.form-control(name="period", rows="1")= question.period
+.form-group
+  label(for="question") 공모요강
+  textarea.form-control(name="content", rows="5")= question.content
+.form-group
+  label(for="charger") 담당자
+  textarea.form-control(name="charger", rows="1")= question.charger
+.form-group
+  label(for="number") 담당자번호
+  textarea.form-control(name="number", rows="1")= question.number  
+
+.form-group
+  label(for="tags") tag
+  input.form-control(type="text", name="tags", placeholder="tags separated by spaces", value=question.tags ? question.tags.join(" ") : "")
+  
+.form-group
+  label(for="img") Image
+  input#file.form-control(type="file")
+  input#url.form-control(type="text", readonly="readonly", name="img", value="")
+  img#preview.img-fluid(src="https://dummyimage.com/200x200/ccc/fff")
+
+
+script.
+  $(function() {
+    $("#preview").hide();
+    $("#file").change(function() {
+      var file = $("#file")[0].files[0];
+      if (file) {
+        var url = "/s3?filename=" + encodeURIComponent(file.name) + 
+                  "&type=" + encodeURIComponent(file.type);
+        console.log(url);
+        $.getJSON(url, function(resp) {
+          console.log(resp.signedRequest);
+          $.ajax({
+            url: resp.signedRequest,
+            method: 'PUT',
+            data: file,
+            headers: {'x-amz-acl': 'public-read', 'Content-Type': file.type},
+            processData: false, 
+            contentType: file.type,
+            success: function() {
+              $("#preview").attr("src", resp.url).show();
+              $("#url").val(resp.url);
+            }
+          });
+        });
+      }
+    });
+  });
+
