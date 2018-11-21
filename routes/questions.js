@@ -16,7 +16,7 @@ module.exports = io => {
       res.redirect('/signin');
     }
   }
-
+// code
   /* GET questions listing. */
   router.get('/', catchErrors(async (req, res, next) => {
     const page = parseInt(req.query.page) || 1;
