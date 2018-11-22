@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www"
-  },"engines":{
+  },
+  "engines":{
     "node" : "8.11.4"
   },
   "dependencies": {
