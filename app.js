@@ -8,7 +8,7 @@ var sassMiddleware = require('node-sass-middleware');
 var session = require('express-session');
 var methodOverride = require('method-override');
 var flash = require('connect-flash');
-var mongoose   = require('mongoose');
+var mongoose = require('mongoose');
 var passport = require('passport');
 var passportSocketIo = require('passport.socketio');
 var index = require('./routes/index');
@@ -33,16 +33,14 @@ module.exports = (app, io) => {
   // mongodb connect
   //=======================================================
   mongoose.Promise = global.Promise; // ES6 Native Promise를 mongoose에서 사용한다.
-  // const connStr = 'mongodb://localhost/mjdb4';
+  //  const connStr = 'mongodb://localhost/mjdb4';
   // 아래는 mLab을 사용하는 경우의 예: 본인의 접속 String으로 바꾸세요.
 
   //  const connStr ='mongodb://dbuser1:123456a@ds127994.mlab.com:27994/mjdb';
 
-  
   const connStr = (process.env.NODE_ENV == 'production')?
-   'mongodb://dbuser1:123456a@ds127994.mlab.com:27994/mjdb':
+   'mongodb://dbuser1:123456a@ds127994.mlab.com:27994/mjdb' :
    'mongodb://localhost/mjdb4';
-
   mongoose.connect(connStr, {useMongoClient: true });
   mongoose.connection.on('error', console.error);
   //mongo ppt 
