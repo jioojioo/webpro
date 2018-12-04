@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "node ./bin/www"
   },
   "engines": {
     "node": "8.11.4"
@@ -20,6 +20,7 @@
     "express-session": "^1.15.6",
     "extra": "^0.2.1",
     "fs": "0.0.1-security",
+    "fs-extra": "^7.0.1",
     "method-override": "^2.3.10",
     "moment": "^2.22.2",
     "mongoose": "^4.13.17",

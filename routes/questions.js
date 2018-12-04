@@ -86,6 +86,24 @@ module.exports = io => {
     res.redirect('/questions');
   }));
 
+
+     //QQ 넣은 위치 확인
+     const mimetypes={
+      "image/jpeg":"jpg",
+      "image/gif": "gif",
+      "image/png":"png"  
+    };
+    const upload = multer({
+      dest:'tmp',
+      fileFilter:(req, file, cb)=> {
+        var ext = mimetypes[file.mimetype];
+        if (!ext){
+          return cb(new Error('Only image files are allowed!'),false);
+        }
+        cb(null, true);
+      }
+    }); // tmp라는 폴더를 미리 만들고 해야 함
+
   router.post('/', needAuth,
       upload.single('img'), //img라는 필드를 req.file로 저장한다 
       catchErrors(async (req, res, next) => {
@@ -100,10 +118,9 @@ module.exports = io => {
       applicant: req.body.applicant,
       period: req.body.period,
       charger: req.body.charger,
-      img: req.body.img,
       tags: req.body.tags.split(" ").map(e => e.trim()),
     });
-    if(req.file){
+    if (req.file) {
       const dest=path.join(__dirname, '../public/images/uploads/');// 옮길 디렉토리
       console.log("File->",req.file);//multer의 output이 어떤 형태인지 보자.
       const filename = req.file.filename+ "."+mimetypes[req.file.mimetype];
@@ -143,19 +160,3 @@ module.exports = io => {
 
   return router;
 }
-   //QQ 넣은 위치 확인
-   const mimetypes={
-    "image/jpeg":"jpg",
-    "image/gif": "gif",
-    "image/png":"png"  
-  };
-  const upload = multer({
-    dest:'tmp',
-    fileFilter:(req, file, cb)=> {
-      var ext = mimetypes[file.mimetype];
-      if(!ext){
-        return cb(new Error('Only image files are allowed!'),false);
-      }
-      cb(null, true);
-    }
-  }); // tmp라는 폴더를 미리 만들고 해야 함

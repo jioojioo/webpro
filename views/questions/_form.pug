@@ -25,9 +25,9 @@
   input.form-control(type="text", name="tags", placeholder="tags separated by spaces", value=question.tags ? question.tags.join(" ") : "")
   
 .form-group
-  label(for="img") Image
+  label(for='img') Image
   input#file.form-control(type="file")
-  input#url.form-control(type="text", readonly="readonly", name="img", value="")
+  input#url.form-control(type="file", readonly="readonly", name="img", value="")
   img#preview.img-fluid(src="https://dummyimage.com/200x200/ccc/fff")
 
 
