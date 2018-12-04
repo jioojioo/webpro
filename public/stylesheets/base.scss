@@ -40,12 +40,24 @@ a:hover {
   font-family: 'Raleway';
   font-size: 2.5rem;
   margin: 1em 0 0.5em 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid rgb(238, 238, 238);
   color: #011a72;
 }
 
-.header > .navbar {
-  background-color: #011a72!important;
+.header > .navbar { 
+  font-family: '맑은 고딕','malgun gothic';
+  font-size: 15px;
+  background-color: rgb(165, 155, 155)!important;
+
+  background-image: repeating-linear-gradient(45deg, gray 0px, gray 3px, transparent 3px, transparent 6px, gray 6px);
+
+
+  
+
+
+
+
+  
 }
 
 .search-input-group{
