@@ -20,14 +20,14 @@ router.get('/', function(req, res, next) {
 // export AWS_ACCESS_KEY_ID=AKIAI3SWZQ2T????????
 // export AWS_SECRET_ACCESS_KEY=Z3d??????????V637h1aDwNMFCIQYRGgL4lpuu+I
 // export S3_BUCKET=mjoverflow
-
-// for PC
-// set AWS_ACCESS_KEY_ID=AKIAI3SWZQ2T???????? 
-// set AWS_SECRET_ACCESS_KEY=Z3d??????????V637h1aDwNMFCIQYRGgL4lpuu+I
+//QQ
+//for PC
+// set AWS_ACCESS_KEY_ID=AKIAII6N7EUWRJOUMPWQ
+// set AWS_SECRET_ACCESS_KEY=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
 // set S3_BUCKET=mjoverflow
 
-// for HEROKU
-// heroku config:set AWS_ACCESS_KEY_ID=xxx AWS_SECRET_ACCESS_KEY=yyy
+//for HEROKU
+// heroku config:set AWS_ACCESS_KEY_ID=AKIAII6N7EUWRJOUMPWQ AWS_SECRET_ACCESS_KEY=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
 // heroku config:set S3_BUCKET=mjoverflow
 
 const aws = require('aws-sdk');
