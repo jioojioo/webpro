@@ -10,6 +10,12 @@ body {
 a:hover {
   text-decoration: none; }
 
+.navbar-dark .navbar-brand {
+  color: orange; }
+
+.navbar-dark .navbar-nav .nav-link {
+  color: black; }
+
 .jumbotron {
   margin-top: -1em;
   background: url("/images/bg.jpg") no-repeat left center;
@@ -40,8 +46,8 @@ a:hover {
 .header > .navbar {
   font-family: '맑은 고딕','malgun gothic';
   font-size: 15px;
-  background-color: #a59b9b !important;
-  background-image: repeating-linear-gradient(45deg, gray 0px, gray 3px, transparent 3px, transparent 6px, gray 6px); }
+  background-color: white !important;
+  background-image: repeating-linear-gradient(45deg, #e0dddd 0px, white 3px, white 3px, white 6px, white 3px); }
 
 .search-input-group {
   margin: 1em 0;

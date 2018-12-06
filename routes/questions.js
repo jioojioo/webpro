@@ -74,7 +74,7 @@ module.exports = io => {
     question.period = req.body.period;
     question.charger = req.body.charger;
     question.tags = req.body.tags.split(" ").map(e => e.trim());
-    question.img = req.body.img;//*c/
+    
     await question.save();
     req.flash('success', 'Successfully updated');
     res.redirect('/questions');
@@ -89,9 +89,9 @@ module.exports = io => {
 
      //QQ 넣은 위치 확인
      const mimetypes={
-      "image/jpeg":"jpg",
+      "image/jpeg": "jpg",
       "image/gif": "gif",
-      "image/png":"png"  
+      "image/png": "png"  
     };
     const upload = multer({
       dest:'tmp',
@@ -122,7 +122,7 @@ module.exports = io => {
     });
     if (req.file) {
       const dest=path.join(__dirname, '../public/images/uploads/');// 옮길 디렉토리
-      console.log("File->",req.file);//multer의 output이 어떤 형태인지 보자.
+      console.log("File->", req.file);//multer의 output이 어떤 형태인지 보자.
       const filename = req.file.filename+ "."+mimetypes[req.file.mimetype];
       await fs.move(req.file.path, dest+filename);
       question.img="/images/uploads/" + filename;

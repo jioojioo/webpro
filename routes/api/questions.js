@@ -32,7 +32,7 @@ router.post('', catchErrors(async (req, res, next) => {
     number: req.body.number,
     tags: req.body.tags.map(e => e.trim()),
     
-    img: req.body.img//*c*/
+    
   });
   await question.save();
   res.json(question)
@@ -51,7 +51,6 @@ router.put('/:id', catchErrors(async (req, res, next) => {
   question.content = req.body.content;
   question.number = req.body.number;
   question.tags = req.body.tags;
-  question.img=req.body.img;//**c */
   await question.save();
   res.json(question);
 }));
