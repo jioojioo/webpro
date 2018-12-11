@@ -13,12 +13,7 @@ a:hover {
 .navbar-dark .navbar-brand {
   color: orange; }
 .navbar-toggler {
-    padding: .25rem .75rem;
-    font-size: 1.25rem;
-    line-height: 1;
     background: lightsalmon;
-    border: 1px solid transparent;
-    border-radius: .25rem;
 }
 .navbar-dark .navbar-nav .nav-link {
   color: black; }
