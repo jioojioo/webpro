@@ -1,3 +1,5 @@
+# 공모전사이트
+
 # AWS 설정방법
 1. 아래의 AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY 는 AWS의 IAM에서 새로운 사용자를 추가해서 받아야 함!
 2. S3_BUCKET은 AWS의 S3에서 새로 생성해서 만들어야 함
