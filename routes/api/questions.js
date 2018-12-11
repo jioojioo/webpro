@@ -32,7 +32,7 @@ router.post('', catchErrors(async (req, res, next) => {
     number: req.body.number,
     tags: req.body.tags.map(e => e.trim()),
     
-    
+
   });
   await question.save();
   res.json(question)

@@ -73,6 +73,7 @@ module.exports = io => {
     question.applicant = req.body.applicant;
     question.period = req.body.period;
     question.charger = req.body.charger;
+
     question.tags = req.body.tags.split(" ").map(e => e.trim());
     
     await question.save();

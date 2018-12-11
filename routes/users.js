@@ -25,6 +25,9 @@ function validateForm(form, options) {
   if (!email) {
     return 'Email is required.';
   }
+  if (!email) {
+    return 'Email is required.';
+  }
 
   if (!form.password && options.needPassword) {
     return 'Password is required.';
@@ -43,8 +46,16 @@ function validateForm(form, options) {
 
 /* GET users listing. */
 router.get('/', needAuth, catchErrors(async (req, res, next) => {
+  console.log("Req User = ", req.user)
+  if (req.user && req.user.admin !="2") {
+    req.flash('danger', 'You are not an admin.');
+    res.redirect('/');
+    return;
+  }
   const users = await User.find({});
   res.render('users/index', {users: users});
+
+  
 }));
 
 router.get('/new', (req, res, next) => {
@@ -76,6 +87,8 @@ router.put('/:id', needAuth, catchErrors(async (req, res, next) => {
 
   user.name = req.body.name;
   user.email = req.body.email;
+  // //ad
+  // user.admin = req.body.admin;
   if (req.body.password) {
     user.password = await user.generateHash(req.body.password);
   }
@@ -110,6 +123,7 @@ router.post('/', catchErrors(async (req, res, next) => {
   user = new User({
     name: req.body.name,
     email: req.body.email,
+    
   });
   user.password = await user.generateHash(req.body.password);
   await user.save();
